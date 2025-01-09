@@ -1,7 +1,7 @@
 import { Server } from "socket.io";
 import http from "http";
 import express from "express";
-import User from "../models/userModel.js";
+
 
 const app = express();
 
@@ -28,8 +28,8 @@ io.on("connection", (socket) => {
 
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
-  socket.on("disconnect", async() => {
-    if(socket.disconnectionManually) return 
+  socket.on("disconnect", () => {
+     
     console.log("user disconnected", socket.id);
     delete userSocketMap[userId];
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
