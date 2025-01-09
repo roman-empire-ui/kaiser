@@ -33,6 +33,7 @@ const useLogin = () => {
             if(data.error) {
                 throw new Error(data.error)
             }
+            toast.success('Logged in')
 
             localStorage.setItem('kaiser-user' ,JSON.stringify(data))
             setAuthUser(data)

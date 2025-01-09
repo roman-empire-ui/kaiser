@@ -3,15 +3,19 @@ import React, { useEffect, useRef } from "react";
 import useGetMessages from "../../hooks/useGetMessages";
 import Skeleton from "../Skeleton/Skeleton";
 import Message from "./Message";
+import useMessages from "../../hooks/useMessages";
 
 const Messages = () => {
-  const { loading, messages } = useGetMessages();
+  const { loading, messages } = useGetMessages(); 
+  useMessages()
   const lastMessageRef = useRef();
+
   useEffect(() => {
     setTimeout(() => {
-      lastMessageRef.current?.scrollIntoView({behaviour : 'smooth'})
-    })
+      lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   }, [messages]);
+
   return (
     <div className="px-4 flex-1 overflow-auto">
       {!loading &&
@@ -31,4 +35,4 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+export default Messages

@@ -14,7 +14,7 @@ const Login = () => {
   const hanSubmit = async(e) => {
     e.preventDefault()
     await login(userName , password)
-    toast.success('logged in')
+    
   }
   return (
     <div className="flex flex-col items-center justify-center max-w-96 mx-auto">

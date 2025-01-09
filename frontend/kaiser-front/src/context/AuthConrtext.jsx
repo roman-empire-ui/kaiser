@@ -10,15 +10,16 @@ export const AuthContextProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(() => {
     try {
       const storedUser = localStorage.getItem("kaiser-user");
-      return storedUser ? JSON.parse(storedUser) : null; // Parse only if valid
+      return storedUser ? JSON.parse(storedUser) : null; 
     } catch (e) {
       console.error("Error parsing localStorage 'kaiser-user':", e);
-      return null; // Return null if parsing fails
+      return null;
     }
   });
+  const [loggedOutTime , setLoggedOutTime] = useState(null)
 
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser }}>
+    <AuthContext.Provider value={{ authUser, setAuthUser, loggedOutTime , setLoggedOutTime }}>
       {children}
     </AuthContext.Provider>
   );

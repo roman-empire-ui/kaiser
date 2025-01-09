@@ -31,7 +31,7 @@ export const signUp = async (req, res) => {
     });
 
     if (newUser) {
-        genTokenAndCookie(newUser._id , res)
+      genTokenAndCookie(newUser._id, res);
       await newUser.save();
       res.status(201).json({
         _id: newUser._id,
@@ -40,7 +40,7 @@ export const signUp = async (req, res) => {
         profile: newUser.profile,
       });
     } else {
-        res.status(401).json({error : 'Invalid user data'})
+      res.status(401).json({ error: "Invalid user data" });
     }
   } catch (e) {
     console.log(e);
@@ -50,37 +50,40 @@ export const signUp = async (req, res) => {
 
 export const signIn = async (req, res) => {
   try {
-    const {userName , password} = req.body 
-    const user = await User.findOne({userName}) 
-    const isPassword = await bcrypt.compare(password,user?.password || '')
+    const { userName, password } = req.body;
+    const user = await User.findOne({ userName });
+    const isPassword = await bcrypt.compare(password, user?.password || "");
 
-    if(!user || !isPassword){
-        return res.status(401).json({error : 'Invalid credentials'})
+    if (!user || !isPassword) {
+      return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    genTokenAndCookie(user._id , res) 
+    genTokenAndCookie(user._id, res);
     res.status(201).json({
-        _id: user._id,
-        fullName: user.fullName,
-        userName: user.userName,
-        profile: user.profile,
-        message : 'Logged in successfully'
-    })
-
+      _id: user._id,
+      fullName: user.fullName,
+      userName: user.userName,
+      profile: user.profile,
+      message: "Logged in successfully",
+    });
   } catch (e) {
-    console.log(e) 
+    console.log(e);
     res.status(500).json({
-        error: "Internal server error",
-    })
+      error: "Internal server error",
+    });
   }
 };
 
 export const logOut = async (req, res) => {
+
   try {
-    res.cookie('token' , '' ,{maxAge : 0})
-    res.status(200).json({message : 'Logged out successfully'})
+
+    const loggedOutTime = new Date()
+    const localTime = loggedOutTime.toLocaleTimeString('en-us', { timeZone: 'Asia/Kolkata' })
+    res.cookie("token", "", { maxAge: 0 });
+    res.status(200).json({ message: "Logged out", localTime });
   } catch (e) {
-    console.log(e)
-    res.status(500).json({error : 'Internal server error'})
+    console.log(e);
+    res.status(500).json({ error: "Internal server error" });
   }
 };

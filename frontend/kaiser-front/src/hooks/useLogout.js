@@ -5,7 +5,7 @@ import { useAuthContext } from "../context/AuthConrtext";
 
 const useLogout = () => {
   const [loading, setLoading] = useState(false);
-  const {setAuthUser} = useAuthContext()
+  const {setAuthUser , setLoggedOutTime} = useAuthContext()
 
   const logout = async () => {
     setLoading(true)
@@ -17,12 +17,14 @@ const useLogout = () => {
                 },
               });
               const data = await res.json();
+              console.log(data.localTime)
               if(data.error) {
                   throw new Error(data.error)
               }
               toast.success('logged out')
               localStorage.removeItem('kaiser-user')
               setAuthUser(null)
+              setLoggedOutTime(data.localTime)
         } catch (error) {
             toast.error(error.message)
         } finally {

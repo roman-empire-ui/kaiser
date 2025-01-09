@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import useConvo from '../zustand/useConvo'
 
 const useGetMessages = () => {
  const [loading , setLoading] = useState(false)
- const {selectedConversation , messages , setMessages} = useConvo()
+ const { messages , selectedConversation,setMessages} = useConvo()
 
 useEffect(() => {
     const getMessages = async() => {
         setLoading(true)
         try {
-            const res = await fetch(`api/messages/${selectedConversation._id}`, {
-                method: 'GET',
-            })
+            const res = await fetch(`api/messages/${selectedConversation._id}`,)
             const data = await res.json()
             if(data.error) throw new Error(data.error) 
             setMessages(data)
@@ -23,8 +21,8 @@ useEffect(() => {
         }
      }
      if(selectedConversation?._id) getMessages()
-} , [selectedConversation._id , setMessages]) 
+} , [selectedConversation?._id , setMessages]) 
     return {loading , messages}
 }
-
+                                    
 export default useGetMessages

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const useGetConvo = () => {
@@ -10,9 +10,7 @@ const useGetConvo = () => {
       setLoading(true);
 
       try {
-        const res = await fetch("/api/user/getUsers", {
-            method: "GET",
-        });
+        const res = await fetch("/api/user/getUsers");
         const data = await res.json();
         if (data.error) {
           throw new Error(data.error);
