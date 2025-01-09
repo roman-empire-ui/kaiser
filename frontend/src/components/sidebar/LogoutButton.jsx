@@ -1,4 +1,4 @@
-import React from "react";
+
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import useLogout from "../../hooks/useLogout";
 

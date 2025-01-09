@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuthContext } from "./AuthConrtext";
 import io from "socket.io-client";
@@ -52,6 +54,7 @@ export const SocketProvider = ({ children }) => {
         setSocket(null);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authUser]);
 
   return (

@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
+
 import { useAuthContext } from '../../context/AuthConrtext'
 import useConvo from '../../zustand/useConvo'
 import { extractTime } from '../../utils/extractTime'

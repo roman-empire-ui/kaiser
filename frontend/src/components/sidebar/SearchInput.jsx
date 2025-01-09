@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import useConvo from "../../zustand/useConvo";
 import useGetConvo from "../../hooks/useGetConvo";

@@ -1,7 +1,9 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import useConvo from "../../zustand/useConvo";
 import { useSocketContext } from "../../context/SocketContext";
 import { useAuthContext } from "../../context/AuthConrtext";
+
 
 const Conversation = ({ conversation, emoji, index }) => {
     const {selectedConversation , setSelectedConversation} = useConvo() 

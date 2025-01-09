@@ -1,4 +1,4 @@
-import React from "react";
+
 import Conversation from "./Conversation";
 import useGetConvo from "../../hooks/useGetConvo";
 import { getRandomEmoji } from "../../utils/emoji";
@@ -13,7 +13,7 @@ const Conversations = () => {
           key={conversation._id}
           conversation={conversation}
           emoji={getRandomEmoji()}
-          index={index === conversation.length -1}
+          index={index === convo.length -1}
         
         />
      ))}
