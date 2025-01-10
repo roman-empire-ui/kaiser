@@ -18,7 +18,7 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     if (authUser) {
       console.log("Initializing socket connection...");
-      const socket = io("http://localhost:8000", {
+      const socket = io("https://kaiser-chat.onrender.com", {
         query: {
           userId: authUser._id, // Pass user ID as query
         },
